@@ -32,6 +32,14 @@ library(tidyverse)
 
 In this lab, we will introduce how to load, visualize and analysis spatial data in R.  For more information about spatial dataset in R, click [*here*](https://geocompr.robinlovelace.net/spatial-class.html#intro-spatial-class). 
 
+```{r echo=F}
+
+xfun::embed_file('data/data_upload.zip')
+
+
+```
+
+
 ## 1. Vector dataset (simple features)
 
 In GIS field, Vector dataset contains three components: points, lines and polygons. Note: in R, a vector is also a basic data structure which contains element of the same type. Please go back to the content in week 1 if needed. In this lab, we only introduce the concept of vector in GIS field. 
@@ -169,10 +177,12 @@ plot(parcel)
 plot(parcel["SALEPRICE"])
 ```
 
-Alternatively, you can use geom_sf function in the ggplot package to create maps for simple feature. Since parcel is a polygon dataset, we can fill the color of each polygon by the level of price.  
+Alternatively, you can use geom_sf function in the ggplot package to create maps for simple feature. Since parcel is a polygon dataset, we can fill the color of each polygon by the level of price.
+
+Tip: We can use `label_number_si` function to automatically scales and labels with the best SI prefix, for example, "K" for values ≥ 10e3, "M" for ≥ 10e6, "B" for ≥ 10e9, and "T" for ≥ 10e12.
 
 ```{r eval=F}
-ggplot()+geom_sf(data=parcel, aes(fill=SALEPRICE))
+ggplot()+geom_sf(data=parcel, aes(fill=SALEPRICE))+scale_fill_continuous(label = scales::label_number_si())
 ```
 
 To create thematic maps based on shapefiles, `tmap` package is highly recommended due to its flexibility. Make sure you have the packages `tmap` and `tmaptools` installed and loaded in R. 
@@ -213,7 +223,7 @@ tm_shape(school)+tm_dots(size="ENROLL")
 tm_shape(school)+tm_dots(size="ENROLL")+tm_facets(by="TYPE")
 ```
 
-The map only shows location for each school. If you are not familar with Pittsburgh area, it is hard for you to understand this map. In addition, more elements e.g. title, scale bar, and base map are needed. Let'e further improve the map:
+The map only shows location for each school. If you are not familar with Pittsburgh area, it is hard for you to understand this map. In addition, more elements e.g. title, scale bar, and base map are needed. Let's further improve the map:
 
 
 1) Let's first add a base map from open street map. Make sure you have `tmaptools` package installed and loaded. In order to load the base map only within the extent of schools in Pittsburgh, we need to extract the extent (bounding box) of schools using `st_bbox` function to further limit the extent for the base map. `read_osm` function will load open street map data within the defined extent only. 
