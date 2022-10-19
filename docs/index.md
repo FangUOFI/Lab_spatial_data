@@ -441,6 +441,52 @@ st_write(tract_pov, "data/tract_pov.shp")
 ```
 
 
+# Your turn 
+
+Please answer the question below based on the lab contents. 
+
+## Question 1 (10 points)
+
+Please load the `tmap` package and the dataset called `World`. Create a static map showing the geographic distribution of the happy planet index (HPI) across Asia only (5 points). Note: you should use a proper classification method and classify your data into 4 groups. Add a proper title (3 points) and north arrow (2 points), too. 
+
+Answer:
+
+
+
+## Question 2 (15 points)
+
+What is the average HPI over the World dataset (5 points)? Let's define happiness as where HPI above average as "Happy" and below the average as "Unhappy". Please plot out a world map (just add the legend) showing the "Happy" regions and "Unhappy" regions (10 points). Hint: you need a new column to represent happiness, then generate a map for this categorical variable. Note you need to select a proper color palette. 
+
+Answer:
+
+
+## Question 3 (5 points)
+
+Based on your map in Q2, do you find any patterns?
+Answer:
+
+## Question 4 (10 points)
+Based on this World data, plot out average population density (based on pop_est_dens) at continent level (8 points). Please also provide a proper title (2 points). 
+
+Answer:
+
+
+## Question 5 (10 points)
+
+Use the `tidycensus` package to download Total median household income ("B19013_001") from five-year American Community Survey (use `get_acs` function) for your home state in 2018 (if you are an international student, just plot Illinois). Note within the `get_acs` function you need to set `geometry=T` in order to preserve the spatial component. 
+
+Plot median household income at county level (3 points). Also use a proper classification method with 4 classes and adjust your legend properly (3 points) e.g. set legend text: `legend.text.size` , and legend size: `legend.width` under `tm_layout.` 
+
+Based on your map, explain your findings in a few words (4 points). 
+Answer:
+
+
+
+
+
+
+
+
 
 
 
